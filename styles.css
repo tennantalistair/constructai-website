@@ -9,6 +9,7 @@
     --color-black: #000000;
     --color-gray: #F5F5F5;
     --color-dark-gray: #333333;
+    --color-error: #dc3545;           /* Error red */
 }
 
 * {
@@ -291,6 +292,19 @@ h3 {
     color: var(--color-black);
 }
 
+.form-group input.error {
+    border-color: var(--color-error);
+}
+
+.error-message {
+    color: var(--color-error);
+    font-size: 14px;
+    margin-top: 5px;
+    position: absolute;
+    bottom: -20px;
+    left: 0;
+}
+
 .form-group label {
     position: absolute;
     left: 12px;
@@ -309,6 +323,11 @@ h3 {
     top: 0;
     font-size: 14px;
     color: var(--color-blue-primary);
+}
+
+.form-group input.error:focus + label,
+.form-group input.error:not(:placeholder-shown) + label {
+    color: var(--color-error);
 }
 
 .submit-btn {
@@ -330,6 +349,13 @@ h3 {
     background-color: var(--color-orange-accent);
     transform: translateY(-2px);
     box-shadow: 0 4px 10px rgba(74, 144, 226, 0.2);
+}
+
+.submit-btn:disabled {
+    background-color: var(--color-gray);
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
 }
 
 .form-footer {

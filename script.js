@@ -2,79 +2,119 @@ document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('inquiryForm');
     
     // Add placeholder attributes to inputs for label animation
-    const inputs = form.querySelectorAll('input');
+    const inputs = form.querySelectorAll('input:not([type="hidden"])');
     inputs.forEach(input => {
         input.setAttribute('placeholder', ' ');
+        
+        // Add input event listener for real-time validation
+        input.addEventListener('input', function() {
+            validateInput(this);
+        });
     });
 
     // Form validation and submission
     form.addEventListener('submit', function(e) {
-        e.preventDefault();
+        e.preventDefault(); // Always prevent default to handle validation
+        console.log('Form submission started');
         
         // Basic validation
         let isValid = true;
         const formData = {};
         
         inputs.forEach(input => {
-            const value = input.value.trim();
-            formData[input.id] = value;
-            
-            if (!value) {
+            if (!validateInput(input)) {
                 isValid = false;
-                showError(input, 'This field is required');
-            } else {
-                clearError(input);
-                
-                // Specific field validations
-                switch(input.id) {
-                    case 'email':
-                        if (!isValidEmail(value)) {
-                            isValid = false;
-                            showError(input, 'Please enter a valid email address');
-                        }
-                        break;
-                    case 'phone':
-                        if (!isValidPhone(value)) {
-                            isValid = false;
-                            showError(input, 'Please enter a valid phone number');
-                        }
-                        break;
-                    case 'website':
-                        if (!isValidURL(value)) {
-                            isValid = false;
-                            showError(input, 'Please enter a valid URL');
-                        }
-                        break;
-                    case 'projects':
-                        if (isNaN(value) || parseInt(value) < 0) {
-                            isValid = false;
-                            showError(input, 'Please enter a valid number');
-                        }
-                        break;
-                }
             }
+            formData[input.id] = input.value.trim();
         });
 
-        if (isValid) {
-            // Simulate form submission
-            const submitBtn = form.querySelector('.submit-btn');
-            submitBtn.disabled = true;
-            submitBtn.textContent = 'Submitting...';
-            
-            // Simulate API call
-            setTimeout(() => {
-                submitBtn.textContent = 'Submitted Successfully!';
-                form.reset();
-                setTimeout(() => {
-                    submitBtn.disabled = false;
-                    submitBtn.textContent = 'Submit Inquiry';
-                }, 2000);
-            }, 1500);
+        if (!isValid) {
+            console.log('Form validation failed');
+            return;
         }
+
+        console.log('Form validation passed, proceeding with submission');
+        const submitBtn = form.querySelector('.submit-btn');
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Submitting...';
+
+        // Log the submission attempt
+        console.log('Form submitted with data:', formData);
+        
+        // Submit the form
+        form.submit();
     });
 });
 
-// Validation helper functions
+// Validation helper function
+function validateInput(input) {
+    const value = input.value.trim();
+    let isValid = true;
+    let errorMessage = '';
+
+    // Check if empty
+    if (!value) {
+        isValid = false;
+        errorMessage = 'This field is required';
+    } else {
+        // Specific field validations
+        switch(input.id) {
+            case 'fullName':
+                if (!/^[A-Za-z\s\-']+$/.test(value)) {
+                    isValid = false;
+                    errorMessage = 'Please enter a valid name (letters, spaces, hyphens, and apostrophes only)';
+                }
+                break;
+            case 'email':
+                if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+                    isValid = false;
+                    errorMessage = 'Please enter a valid email address';
+                }
+                break;
+            case 'phone':
+                if (!/^[\d\s\-+()]{10,}$/.test(value)) {
+                    isValid = false;
+                    errorMessage = 'Please enter a valid phone number (minimum 10 digits)';
+                }
+                break;
+            case 'website':
+                try {
+                    const url = new URL(value);
+                    if (!url.protocol.startsWith('http')) {
+                        throw new Error('Invalid protocol');
+                    }
+                } catch {
+                    isValid = false;
+                    errorMessage = 'Please enter a valid URL starting with http:// or https://';
+                }
+                break;
+            case 'projects':
+                const numProjects = parseInt(value);
+                if (isNaN(numProjects) || numProjects < 0) {
+                    isValid = false;
+                    errorMessage = 'Please enter a valid number (0 or greater)';
+                }
+                break;
+            default:
+                // For other fields, just ensure they have minimum length
+                if (value.length < 2) {
+                    isValid = false;
+                    errorMessage = 'Please enter at least 2 characters';
+                }
+        }
+    }
+
+    if (!isValid) {
+        showError(input, errorMessage);
+        console.log(`${input.id} validation failed: ${errorMessage}`);
+    } else {
+        clearError(input);
+        console.log(`${input.id} validation passed`);
+    }
+
+    return isValid;
+}
+
 function showError(input, message) {
     const formGroup = input.parentElement;
     const errorDiv = formGroup.querySelector('.error-message') || document.createElement('div');
@@ -93,23 +133,6 @@ function clearError(input) {
         formGroup.removeChild(errorDiv);
     }
     input.classList.remove('error');
-}
-
-function isValidEmail(email) {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-}
-
-function isValidPhone(phone) {
-    return /^[\d\s\-+()]{10,}$/.test(phone);
-}
-
-function isValidURL(url) {
-    try {
-        new URL(url);
-        return true;
-    } catch {
-        return false;
-    }
 }
 
 // Add smooth scrolling for better UX
@@ -146,4 +169,15 @@ window.addEventListener('scroll', () => {
         nav.classList.add('scroll-up');
     }
     lastScroll = currentScroll;
+});
+
+// Log any form-related errors to help with debugging
+window.addEventListener('error', function(e) {
+    console.error('Global error:', e.message);
+    console.error('Error details:', {
+        filename: e.filename,
+        lineno: e.lineno,
+        colno: e.colno,
+        error: e.error
+    });
 });
