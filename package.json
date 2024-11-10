@@ -1,0 +1,12 @@
+{
+  "name": "constructai-website",
+  "version": "1.0.0",
+  "description": "Construct.AI website",
+  "scripts": {
+    "start": "serve -s .",
+    "build": "echo 'No build step needed - static site'"
+  },
+  "dependencies": {
+    "serve": "^14.2.1"
+  }
+}
