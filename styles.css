@@ -35,9 +35,9 @@ body {
 .hero {
     background: var(--color-blue-lighter);
     color: var(--color-black);
-    padding: 160px 0 120px;
+    padding: 100px 0 60px;
     text-align: center;
-    min-height: 100vh;
+    min-height: auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -53,6 +53,7 @@ body {
 
 .hero-content .images-grid {
     margin-top: 40px;
+    margin-bottom: 40px;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
@@ -125,11 +126,11 @@ h3 {
 
 /* Overview Section */
 .overview {
-    padding: 100px 0;
+    padding: 60px 0;
     background: var(--color-blue-lighter);
 }
 
-.intro {
+.intro, .overview p {
     font-size: 24px;
     margin-bottom: 40px;
     color: var(--color-black);
@@ -137,6 +138,7 @@ h3 {
     margin-left: auto;
     margin-right: auto;
     text-align: justify;
+    font-family: 'Inter', sans-serif;
 }
 
 .sectors {
@@ -394,7 +396,7 @@ footer {
         grid-template-columns: 1fr;
     }
     
-    .intro {
+    .intro, .overview p {
         font-size: 20px;
     }
     
