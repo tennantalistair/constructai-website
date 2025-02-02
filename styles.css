@@ -85,7 +85,7 @@ nav {
 }
 
 /* Headings */
-h1, h2, h3, .section-heading {
+h1, h2, h3, .section-heading, .pre-title, .sub-pre-title {
     text-align: center;
     width: 100%;
     max-width: 1200px;
@@ -113,6 +113,20 @@ h3 {
     font-size: 28px;
     font-weight: 700;
     margin-bottom: 20px;
+    color: var(--color-black);
+}
+
+.pre-title {
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: var(--color-black);
+}
+
+.sub-pre-title {
+    font-size: 36px;
+    font-weight: 600;
+    margin-bottom: 30px;
     color: var(--color-black);
 }
 
@@ -388,6 +402,14 @@ footer {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    .pre-title {
+        font-size: 36px;
+    }
+    
+    .sub-pre-title {
+        font-size: 28px;
+    }
+    
     h1 {
         font-size: 48px;
     }
@@ -426,6 +448,14 @@ footer {
 }
 
 @media (max-width: 480px) {
+    .pre-title {
+        font-size: 28px;
+    }
+    
+    .sub-pre-title {
+        font-size: 24px;
+    }
+    
     h1 {
         font-size: 36px;
     }
