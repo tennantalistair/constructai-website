@@ -490,3 +490,15 @@ footer {
         padding: 30px;
     }
 }
+
+.bottom-right-button {
+    border: 1px solid white;
+    padding: 5px; /* Reduced padding for smaller height */
+    background-color: rgba(74, 144, 226, 0.5); /* Semi-transparent blue */
+    text-decoration: none;
+    z-index: 1000;
+    border-radius: 5px;
+    margin-top: 20px; /* Add space above the button */
+    color: white;
+    font-size: 0.5em;
+}
