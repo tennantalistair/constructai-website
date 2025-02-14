@@ -1,5 +1,5 @@
 {
-  "cleanUrls": false,
+  "public": ".",
   "rewrites": [
     { "source": "/new_page", "destination": "/new_page.html" }
   ]
