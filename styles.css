@@ -502,3 +502,14 @@ footer {
     color: white;
     font-size: 0.5em;
 }
+
+.centered-title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--color-white);
+    font-weight: bold;
+    text-align: center;
+    z-index: 10;
+}
