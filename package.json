@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Construct.AI website",
   "scripts": {
-    "start": "serve -s .",
+    "start": "serve . --no-clean-urls",
     "build": "echo 'No build step needed - static site'"
   },
   "dependencies": {
