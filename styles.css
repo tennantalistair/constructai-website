@@ -25,6 +25,24 @@ body {
     background-color: var(--color-blue-lighter);
 }
 
+/* New page background */
+body.new-page-background {
+    background-image: url('0597.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: bottom center;
+    height: 100vh;
+    width: 100vw;
+}
+
+elevenlabs-convai {
+    position: fixed;
+    bottom: 20px; /* Add some padding */
+    right: 20px; /* Add some padding */
+    z-index: 1000; /* Ensure it's above other elements */
+}
+
 .container {
     max-width: 1200px;
     margin: 0 auto;
