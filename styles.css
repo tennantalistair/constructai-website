@@ -37,10 +37,11 @@ body.new-page-background {
 }
 
 elevenlabs-convai {
-    position: fixed;
-    bottom: 20px; /* Add some padding */
-    right: 20px; /* Add some padding */
     z-index: 1000; /* Ensure it's above other elements */
+    margin-top: 20px; /* Add space below the title */
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .container {
