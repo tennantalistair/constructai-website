@@ -5,6 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Inspection</title>
     <link rel="stylesheet" href="styles.css" />
+    <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
+    <style>
+        /* Position the chatbot container */
+        #n8n-chat-container {
+            position: fixed;
+            bottom: 20px;  /* Adjust as needed */
+            left: 20px;   /* Adjust as needed */
+        }
+    </style>
     <script
       src="https://elevenlabs.io/convai-widget/index.js"
       async
@@ -14,89 +23,100 @@
   <body class="new-page-background">
     <h1 class="centered-title">Inspections</h1>
     <div class="flowise-chat-wrapper">
-    <elevenlabs-convai agent-id="QlmWD8M6p1SiQ9y8LSvb"></elevenlabs-convai>
+      <elevenlabs-convai agent-id="QlmWD8M6p1SiQ9y8LSvb"></elevenlabs-convai>
       <script type="module">
-        import Chatbot from "https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js"
+        import Chatbot from "https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js";
         Chatbot.init({
-            chatflowid: "462fb3fa-4fcc-42bc-acf1-cc81f1a4886f",
-            apiHost: "https://flowise-l8hx.onrender.com",
-            chatflowConfig: {
-                /* Chatflow Config */
+          chatflowid: "462fb3fa-4fcc-42bc-acf1-cc81f1a4886f",
+          apiHost: "https://flowise-l8hx.onrender.com",
+          chatflowConfig: {
+            /* Chatflow Config */
+          },
+          observersConfig: {
+            /* Observers Config */
+          },
+          theme: {
+            button: {
+              backgroundColor: "#006400",
+              right: 20,
+              bottom: 100,
+              size: 48,
+              dragAndDrop: true,
+              iconColor: "white",
+              customIconSrc:
+                "https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/svg/google-messages.svg",
+              autoWindowOpen: {
+                autoOpen: true,
+                openDelay: 2,
+                autoOpenOnMobile: false,
+              },
             },
-            observersConfig: {
-                /* Observers Config */
+            customCSS: ``,
+            chatWindow: {
+              showTitle: true,
+              showAgentMessages: true,
+              title: "Equipment Bot",
+              titleAvatarSrc:
+                "https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/svg/google-messages.svg",
+              welcomeMessage:
+                "Hello! I am able to assist you regarding operations and maintenance on windmills",
+              errorMessage: "This is a custom error message",
+              backgroundColor: "#ffffff",
+              backgroundImage: "enter image path or link",
+              height: 700,
+              width: 500,
+              fontSize: 16,
+              starterPrompts: [
+                "What are the recommendations for windmill inspections",
+              ],
+              starterPromptFontSize: 15,
+              clearChatOnReload: false,
+              sourceDocsTitle: "Sources:",
+              renderHTML: true,
+              botMessage: {
+                backgroundColor: "#f7f8ff",
+                textColor: "#303235",
+                showAvatar: true,
+                avatarSrc: "green-robot-01.png",
+              },
+              userMessage: {
+                backgroundColor: "#3B81F6",
+                textColor: "#ffffff",
+                showAvatar: true,
+                avatarSrc: "orange-chatbot-3.png",
+              },
+              textInput: {
+                placeholder: "Type your question",
+                backgroundColor: "#ffffff",
+                textColor: "#303235",
+                sendButtonColor: "#3B81F6",
+                maxChars: 50,
+                maxCharsWarningMessage:
+                  "You exceeded the characters limit. Please input less than 50 characters.",
+                autoFocus: true,
+                sendMessageSound: true,
+                sendSoundLocation: "send_message.mp3",
+                receiveMessageSound: true,
+                receiveSoundLocation: "receive_message.mp3",
+              },
+              feedback: {
+                color: "#303235",
+              },
+              dateTimeToggle: {
+                date: true,
+                time: true,
+              },
             },
-            theme: {
-                button: {
-                    backgroundColor: '#006400',
-                    right: 20,
-                    bottom: 100,
-                    size: 48,
-                    dragAndDrop: true,
-                    iconColor: 'white',
-                    customIconSrc: 'https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/svg/google-messages.svg',
-                    autoWindowOpen: {
-                        autoOpen: true,
-                        openDelay: 2,
-                        autoOpenOnMobile: false
-                    }
-                },
-                customCSS: ``,
-                chatWindow: {
-                    showTitle: true,
-                    showAgentMessages: true,
-                    title: 'Equipment Bot',
-                    titleAvatarSrc: 'https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/svg/google-messages.svg',
-                    welcomeMessage: 'Hello! I am able to assist you regarding operations and maintenance on windmills',
-                    errorMessage: 'This is a custom error message',
-                    backgroundColor: '#ffffff',
-                    backgroundImage: 'enter image path or link',
-                    height: 700,
-                    width: 500,
-                    fontSize: 16,
-                    starterPrompts: [
-                        "What are the recommendations for windmill inspections"
-                    ],
-                    starterPromptFontSize: 15,
-                    clearChatOnReload: false,
-                    sourceDocsTitle: 'Sources:',
-                    renderHTML: true,
-                    botMessage: {
-                        backgroundColor: '#f7f8ff',
-                        textColor: '#303235',
-                        showAvatar: true,
-                        avatarSrc: 'green-robot-01.png'
-                    },
-                    userMessage: {
-                        backgroundColor: '#3B81F6',
-                        textColor: '#ffffff',
-                        showAvatar: true,
-                        avatarSrc: 'orange-chatbot-3.png'
-                    },
-                    textInput: {
-                        placeholder: 'Type your question',
-                        backgroundColor: '#ffffff',
-                        textColor: '#303235',
-                        sendButtonColor: '#3B81F6',
-                        maxChars: 50,
-                        maxCharsWarningMessage: 'You exceeded the characters limit. Please input less than 50 characters.',
-                        autoFocus: true,
-                        sendMessageSound: true,
-                        sendSoundLocation: 'send_message.mp3',
-                        receiveMessageSound: true,
-                        receiveSoundLocation: 'receive_message.mp3'
-                    },
-                    feedback: {
-                        color: '#303235'
-                    },
-                    dateTimeToggle: {
-                        date: true,
-                        time: true
-                    }
-                }
-            }
-        })
-    </script>
+          },
+        });
+      </script>
     </div>
+    <script type="module">
+        import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
+
+        createChat({
+            webhookUrl: 'https://n8n-6x3c.onrender.com/webhook/aef32a00-04bb-4d2b-acf6-588151726f49/chat'
+        });
+    </script>
   </body>
 </html>
